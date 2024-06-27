@@ -1,6 +1,9 @@
 from tkinter import *
 import math
+import pygame
 
+pygame.mixer.init()
+sound = pygame.mixer.Sound("sound.wav")
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -26,6 +29,9 @@ def reset_timer():
 def start_timer():
     global reps
     reps += 1
+    sound.play()  # Play sound when reps change
+    window.attributes('-topmost', 1)  # Make the window hover above all others
+    window.attributes('-topmost', 0)  # Disable topmost after setting it
     work_sec = WORK_MIN * 60
     short_break_sec = SHORT_BREAK_MIN * 60
     long_break_sec = LONG_BREAK_MIN * 60
