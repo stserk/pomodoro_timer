@@ -1,4 +1,5 @@
 from tkinter import *
+import math
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -14,12 +15,16 @@ LONG_BREAK_MIN = 20
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
-    count_down(5)
+    count_down(5*60)
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
-    canvas.itemconfig(timer_text, text=f"{count}")
+
+    count_min = math.floor(count / 60)
+    count_sec = count % 60
+
+    canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
-        window.after(1000, count_down, count - 1)
+        window.after(1000, count_down,count-1)
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Pomodoro")
@@ -37,10 +42,10 @@ canvas.grid(column=1, row=1)
 timer_laber = Label(text="Timer", font=(FONT_NAME, 35, "bold"), fg=GREEN, bg=YELLOW)
 timer_laber.grid(column=1, row=0)
 
-start_button = Button(text="Start", highlightthickness=0, command=start_timer)
+start_button = Button(text="START", highlightthickness=0, bg = GREEN, fg = YELLOW, command=start_timer, font=(FONT_NAME, 10, "bold"))
 start_button.grid(column=0, row=2)
 
-reset_button = Button(text="Reset", highlightthickness=0)
+reset_button = Button(text="RESET", highlightthickness=0, bg = RED, fg = YELLOW, font=(FONT_NAME, 10, "bold"))
 reset_button.grid(column=2, row=2)
 
 check_marks = Label(text="✅", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 14, "bold"))
