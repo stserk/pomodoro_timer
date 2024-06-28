@@ -25,6 +25,8 @@ def reset_timer():
     check_marks.config(text="")
     reps = 0
 
+    start_button.config(state=NORMAL)
+
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
     global reps
@@ -45,6 +47,8 @@ def start_timer():
     else:
         count_down(work_sec)
         timer_label.config(text="Work", fg=GREEN)
+
+    start_button.config(state=DISABLED)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
